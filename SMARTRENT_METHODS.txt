@@ -1,0 +1,56 @@
+SMARTRENT-PY AVAILABLE METHODS
+================================
+Source: venv/lib/python3.13/site-packages/smartrent/
+
+ALL DEVICES (inherited from Device base class)
+-----------------------------------------------
+get_name()              -> str    | device name
+get_online()            -> bool   | is device connected?
+get_battery_level()     -> int    | battery percentage
+get_battery_powered()   -> bool   | is it battery powered?
+
+
+LOCK (DoorLock)
+---------------
+get_locked()                    -> bool  | True = locked, False = unlocked
+get_notification()              -> str   | last notification message
+async_set_locked(value: bool)           | lock (True) or unlock (False)
+
+
+THERMOSTAT (Thermostat)
+------------------------
+get_current_temp()              -> int   | current temperature (F)
+get_cooling_setpoint()          -> int   | target cool temperature
+get_heating_setpoint()          -> int   | target heat temperature
+get_mode()                      -> str   | 'cool', 'heat', 'auto', 'off', 'aux_heat'
+get_fan_mode()                  -> str   | 'on' or 'auto'
+get_operating_state()           -> str   | what it's actually doing right now
+get_current_humidity()          -> int   | humidity percentage
+
+async_set_cooling_setpoint(value: int)  | set cool target temp
+async_set_heating_setpoint(value: int)  | set heat target temp
+async_set_mode(mode: str)               | accepted: 'aux_heat', 'heat', 'cool', 'auto', 'off'
+async_set_fan_mode(fan_mode: str)       | accepted: 'on', 'auto'
+
+
+BINARY SWITCH - on/off (BinarySwitch)
+--------------------------------------
+get_on()                        -> bool  | True = on, False = off
+async_set_on(value: bool)               | turn on (True) or off (False)
+
+
+DIMMER SWITCH - brightness (MultilevelSwitch)
+----------------------------------------------
+get_level()                     -> int   | brightness level 0-100
+async_set_level(value: int)             | set brightness 0-100
+
+
+LEAK SENSOR (LeakSensor)
+-------------------------
+get_active()                    -> bool  | True = leak detected, False = dry
+
+
+PATTERN
+-------
+get_*()       -> read current state (sync)
+async_set_*() -> control the device  (async, must be awaited)
