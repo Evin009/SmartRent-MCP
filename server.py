@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 # naming our mcp server and init
-mcp = FastMCP("smartrent-mcp-server")
+mcp = FastMCP("smartrent-mcp-server", host='0.0.0.0', port=(os.environ.get("PORT", 8000)))
 
 # registers functions as an MCP tool
 @mcp.tool()
@@ -55,4 +55,4 @@ async def set_temperature(temperature: int, mode: str = "cool", unit: str = "F")
 
 
 if __name__ == "__main__":
-    mcp.run(transport="sse", host='0.0.0.0', port=(os.environ.get("PORT", 8000)))
+    mcp.run(transport="sse")
