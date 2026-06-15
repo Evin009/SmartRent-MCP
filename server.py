@@ -1,6 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from dotenv import load_dotenv
 from tools.devices import fetch_devices_status, control_switch, control_lock, control_temperature
+import os
 
 # loads env variable
 load_dotenv()
@@ -54,4 +55,4 @@ async def set_temperature(temperature: int, mode: str = "cool", unit: str = "F")
 
 
 if __name__ == "__main__":
-    mcp.run(transport="sse")
+    mcp.run(transport="sse", host='0.0.0.0', port=(os.environ.get("PORT", 8000)))
