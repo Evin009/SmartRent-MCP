@@ -1,4 +1,5 @@
 from mcp.server.fastmcp import FastMCP
+from mcp.server.transport_security import TransportSecuritySettings
 from dotenv import load_dotenv
 from tools.devices import fetch_devices_status, control_switch, control_lock, control_temperature
 import os
@@ -7,7 +8,10 @@ import os
 load_dotenv()
 
 # naming our mcp server and init
-mcp = FastMCP("smartrent-mcp-server", host='0.0.0.0', port=(os.environ.get("PORT", 8000)))
+mcp = FastMCP("smartrent-mcp-server", 
+              host='0.0.0.0',
+              port=(os.environ.get("PORT", 8000)),
+              transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False))
 
 # registers functions as an MCP tool
 @mcp.tool()
