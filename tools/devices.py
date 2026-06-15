@@ -70,7 +70,7 @@ async def control_lock(action: str) -> str:
         return f"Unknown action '{action}'. Use 'lock' or 'unlock'."
     
     
-async def controk_temperature(temperature: int, mode: str = "cool") -> str:
+async def control_temperature(temperature: int, mode: str = "cool", unit: str = "F") -> str:
     """Set the thermostat temperature and mode"""
     
     api = await get_api()
@@ -79,7 +79,12 @@ async def controk_temperature(temperature: int, mode: str = "cool") -> str:
     if not thermostats:
         return f"No thermostat found on this account"
     
+    # convert C to F if needed
+    if unit.upper()  == 'C':
+        temperature = int((temperature * 9/5) + 32)
+        
     therm = thermostats[0]
+    
     
     accepted_modes = ['cool', 'heat', 'auto', 'off']
     
@@ -98,4 +103,8 @@ async def controk_temperature(temperature: int, mode: str = "cool") -> str:
         return f"Thermostat turned off"
 
     await therm.async_set_mode(mode)
-    return f"Thermostat set to {temperature}°F in {mode} mode"
+    
+    temp_celcius = int((temperature - 32) * (5/9))
+    return f"Thermostat set to {temperature}°F/ {temp_celcius}°C in {mode} mode"
+
+        

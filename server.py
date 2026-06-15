@@ -1,6 +1,6 @@
 from mcp.server.fastmcp import FastMCP
 from dotenv import load_dotenv
-from tools.devices import fetch_devices_status, control_switch, control_lock
+from tools.devices import fetch_devices_status, control_switch, control_lock, control_temperature
 
 # loads env variable
 load_dotenv()
@@ -38,6 +38,17 @@ async def lock_door(action: str) -> str:
     action: 'lock' or 'unlock'
     """
     return await control_lock(action)
+
+# adding tool: temp control
+@mcp.tool()
+async def set_temperature(temperature: int, mode: str = "cool", unit: str = "F") -> str:
+    """
+    Set thermostat temperature and mode.
+    temperature: the temperature value
+    mode: 'cool', 'heat', 'auto', or 'off'
+    unit: 'F' for farenheit (default) or 'C' for celcius
+    """
+    return await control_temperature(temperature, mode, unit)
     
 
 
