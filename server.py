@@ -1,6 +1,6 @@
 from mcp.server.fastmcp import FastMCP
 from dotenv import load_dotenv
-from tools.devices import fetch_devices_status, control_switch
+from tools.devices import fetch_devices_status, control_switch, control_lock
 
 # loads env variable
 load_dotenv()
@@ -29,6 +29,15 @@ async def switch_control(name: str, action: str) -> str:
     action: 'on' or 'off'
     """
     return await control_switch(name, action)
+
+# adding tool: making switch control
+@mcp.tool()
+async def lock_door(action: str) -> str:
+    """
+    Lock or unlock the front door.
+    action: 'lock' or 'unlock'
+    """
+    return await control_lock(action)
     
 
 

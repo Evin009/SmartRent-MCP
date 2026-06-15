@@ -49,6 +49,7 @@ async def control_switch(name: str, action: str) -> str:
     return f"No switch found matching '{name}'. Available: {[s.get_name() for s in switches]}"
 
 
+# adding front door lock control
 async def control_lock(action: str) -> str:
     """Lock or unlcok the front door"""
     api = await get_api()
