@@ -1,7 +1,6 @@
 from mcp.server.fastmcp import FastMCP
 from dotenv import load_dotenv
-import smartrent
-import os
+from tools.devices import fetch_devices_status, control_switch
 
 # loads env variable
 load_dotenv()
@@ -15,10 +14,22 @@ def ping() -> str:
     """Test that the server is alive"""
     return "ARIA MCP server is running"
 
+# adding tool: getting device status
 @mcp.tool()
-async def get_api():
-    return await smartrent.async_login(os.getenv("SMARTRENT_EMAIL"),
-                                      os.getenv("SMARTRENT_PASSWORD"))
+async def get_device_status() -> str:
+    """Get the current status of all SmartRent devices (locks, thermostat, switches, sensors)"""
+    return await fetch_devices_status()
+
+# adding tool: making switch control
+@mcp.tool()
+async def switch_control(name: str, action: str) -> str:
+    """
+    Turn a light switch on or off.
+    name: partial or full name of the switch (e.g. 'bedroom', 'living room')
+    action: 'on' or 'off'
+    """
+    return await control_switch(name, action)
+    
 
 
 

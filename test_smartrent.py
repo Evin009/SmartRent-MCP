@@ -17,9 +17,14 @@ async def main():
     switches = api.get_binary_switches()
     sensors = api.get_leak_sensors()
     
-    print(f"Locks : {len(locks)}")
-    print(f"Thermosats : {len(thermostat)}")
-    print(f"Switches : {len(switches)}")
-    print(f"Sensors : {len(sensors)}")
+    # print(f"Locks : {len(locks)}")
+    # print(f"Thermosats : {len(thermostat)}")
+    # print(f"Switches : {len(switches)}")
+    # print(f"Sensors : {len(sensors)}")
+    
+    # testing switch controls and listing names of devices
+    switch_names = [s.get_name() for s in switches]
+    print(switch_names)
+    
     
 asyncio.run(main())
