@@ -7,11 +7,17 @@ import os
 # loads env variable
 load_dotenv()
 
+# adding a switch between sse and stdio transports as needed
+TRANSPORT = os.environ.get("TRANSPORT", "stdio")
+
 # naming our mcp server and init
-mcp = FastMCP("smartrent-mcp-server", 
-              host='0.0.0.0',
-              port=(os.environ.get("PORT", 8000)),
-              transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False))
+if TRANSPORT == "sse":
+    mcp = FastMCP("smartrent-mcp-server", 
+                host='0.0.0.0',
+                port=(os.environ.get("PORT", 8000)),
+                transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False))
+else:
+    mcp = FastMCP("smartrent-mcp-server")
 
 # registers functions as an MCP tool
 @mcp.tool()
@@ -56,7 +62,9 @@ async def set_temperature(temperature: int, mode: str = "cool", unit: str = "F")
     return await control_temperature(temperature, mode, unit)
     
 
+def main():
+    mcp.run(transport=TRANSPORT)
 
 
 if __name__ == "__main__":
-    mcp.run(transport="sse")
+    main()
