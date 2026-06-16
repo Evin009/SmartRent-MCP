@@ -1,5 +1,7 @@
 # SmartRent MCP
 
+<!-- mcp-name: io.github.Evin009/smartrent-mcp -->
+
 [![PyPI version](https://img.shields.io/pypi/v/smartrent-mcp.svg)](https://pypi.org/project/smartrent-mcp/)
 [![Python versions](https://img.shields.io/pypi/pyversions/smartrent-mcp.svg)](https://pypi.org/project/smartrent-mcp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
