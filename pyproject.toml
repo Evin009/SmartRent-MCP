@@ -1,0 +1,16 @@
+[project]
+name = "smartrent-mcp"
+version = "0.1.0"
+description = "MCP server for controlling SmartRent smart home devices"
+readme = "README.md"
+requires-python = ">=3.10"
+dependecies = ["mcp[cli]", "smartrent-py", "python-dotenv"]
+
+
+[project.scripts]
+smartrent-mcp = "server:main"
+
+# tells python how to build your package into something installable
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
