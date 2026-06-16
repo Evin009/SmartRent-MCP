@@ -8,6 +8,18 @@ An MCP (Model Context Protocol) server that lets Claude control your SmartRent s
 - Python 3.10+
 - [uv](https://docs.astral.sh/uv/) installed
 
+## Installation
+
+```bash
+uv tool install smartrent-mcp
+```
+
+Or run it directly without installing, via `uvx` (used in the Claude config below):
+
+```bash
+uvx smartrent-mcp
+```
+
 ## Setup
 
 ### 1. Add to Claude Desktop config
