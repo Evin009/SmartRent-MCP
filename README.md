@@ -1,5 +1,9 @@
 # SmartRent MCP
 
+[![PyPI version](https://img.shields.io/pypi/v/smartrent-mcp.svg)](https://pypi.org/project/smartrent-mcp/)
+[![Python versions](https://img.shields.io/pypi/pyversions/smartrent-mcp.svg)](https://pypi.org/project/smartrent-mcp/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 An [MCP](https://modelcontextprotocol.io) (Model Context Protocol) server that lets Claude control your [SmartRent](https://smartrent.com) smart home devices — locks, thermostat, light switches, and sensors — through natural conversation.
 
 ```
