@@ -1,5 +1,5 @@
 # SmartRent MCP
-
+[![SmartRent MCP server](https://mcprush.com/badge/smartrent-mcp/card.svg)](https://mcprush.com/to/smartrent-mcp?ref=badge)
 <!-- mcp-name: io.github.Evin009/smartrent-mcp -->
 
 [![PyPI version](https://img.shields.io/pypi/v/smartrent-mcp.svg)](https://pypi.org/project/smartrent-mcp/)
